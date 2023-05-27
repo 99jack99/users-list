@@ -1,6 +1,7 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import router from "../router/index.js";
 
 let users = ref(null);
 
@@ -15,6 +16,18 @@ let get_users = () => {
       console.log(res);
     });
 };
+
+/* const test = (id) => {
+  axios
+    .get(`https://reqres.in/api/users/${id}`)
+    .then((res) => {
+      console.log(res);
+      router.push("/detaileduser");
+    })
+    .catch((res) => {
+      console.log(res);
+    });
+}; */
 
 get_users();
 </script>
@@ -31,7 +44,14 @@ get_users();
           v-bind:src="user.avatar"
           alt="banner"
         />
-        <p class="user__list__card__email">{{ user.email }}</p>
+        <div class="user__list__card__actions">
+          <router-link :to="{ name: 'Detailed', params: { id: user.id } }"
+            >SEE MORE</router-link
+          >
+          <router-link :to="{ name: 'Detailed', params: { id: user.id } }"
+            >DELETE</router-link
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -89,6 +109,18 @@ get_users();
 
       &__img {
         border-radius: 50%;
+      }
+
+      &__actions {
+        margin-block: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        text-decoration: none;
+
+        &:first-child {
+        }
       }
 
       &:hover {
