@@ -8,8 +8,9 @@
 </template>
 
 <style lang="scss" scoped>
+@import "../assets/styles/index.scss";
 .header {
-  background-color: whitesmoke;
+  background-color: $main-color;
   height: 10vh;
   width: 100%;
 
@@ -18,23 +19,24 @@
   justify-content: flex-end;
 
   &__item {
-    margin-inline: 20px 40px;
+    margin-inline: 10px 20px;
 
-    border: 2px solid green;
-    padding: 10px 20px;
+    border: 2px solid $secondary-color;
+    padding: 7px 14px;
     border-radius: 4px;
-    color: green;
+    color: $secondary-color;
+    text-decoration: none;
 
     font-size: 17px;
     font-weight: bold;
 
     &:last-child {
-      background-color: green;
-      color: white;
+      background-color: $secondary-color;
+      color: $main-color;
     }
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
   }
 }

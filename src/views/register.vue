@@ -15,18 +15,23 @@
 </template>
 
 <style lang="scss" scoped>
+@import "../assets/styles/index.scss";
 .register {
-  background-color: blue;
+  background-color: $secondary-color;
   height: 90vh;
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  h1 {
+    color: $font-color;
+    font-size: 3em;
+  }
+
   &__card {
-    background-color: white;
+    background-color: $main-color;
 
     display: flex;
     flex-direction: column;
@@ -36,27 +41,37 @@
     padding: 20px;
     border-radius: 4px;
 
-    & > label {
-      color: blueviolet;
+    font-size: 17px;
+    box-shadow: $main-color 0px 0px 0px 2px inset,
+      rgb(255, 255, 255) 10px -10px 0px -3px, $font-color 10px -10px;
 
+    & > label {
+      color: $secondary-color;
       width: 100%;
       padding-block: 10px;
+      font-weight: bold;
+      font-size: 17px;
     }
 
     & > input {
       border-style: none;
-      padding: 5px;
-      border: 2px solid green;
+      padding: 7px;
       border-radius: 4px;
+      font-size: 17px;
     }
 
     &__register-btn {
       margin-top: 20px;
       padding: 10px 20px;
       border: none;
-      background-color: green;
-      color: white;
+      background-color: $secondary-color;
+      color: $font-color;
       border-radius: 5px;
+      font-weight: bold;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+      }
     }
   }
 }
