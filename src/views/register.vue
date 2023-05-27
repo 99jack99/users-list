@@ -1,20 +1,21 @@
 <script setup></script>
 
 <template>
-  <div class="login">
+  <div class="register">
     <h1>Todavia no estas con nosotros? Crea gratis una cuenta</h1>
-    <div class="login__card">
+    <div class="register__card">
       <label for="">User</label>
       <input type="text" placeholder="email" />
 
       <label for="">Password</label>
       <input type="text" placeholder="password" />
+      <button class="register__card__register-btn">Crear</button>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.login {
+.register {
   background-color: blue;
   height: 90vh;
   width: 100%;
@@ -47,6 +48,15 @@
       padding: 5px;
       border: 2px solid green;
       border-radius: 4px;
+    }
+
+    &__register-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: green;
+      color: white;
+      border-radius: 5px;
     }
   }
 }

@@ -9,6 +9,7 @@
 
       <label for="">Password</label>
       <input type="text" placeholder="password" />
+      <button class="login__card__login-btn">Acceder</button>
     </div>
   </div>
 </template>
@@ -47,6 +48,15 @@
       padding: 5px;
       border: 2px solid green;
       border-radius: 4px;
+    }
+
+    &__login-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: green;
+      color: white;
+      border-radius: 5px;
     }
   }
 }
