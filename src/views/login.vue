@@ -1,15 +1,30 @@
-<script setup></script>
+<script setup>
+import { ref, reactive } from "vue";
+
+import { useAuthStore } from "../stores/authStore.js";
+const authStore = useAuthStore();
+
+const login_data = reactive({
+  email: "",
+  password: "",
+});
+</script>
 
 <template>
   <div class="login">
     <h1>Ya tienes cuenta? Unete a nosotros!</h1>
     <div class="login__card">
       <label for="">User</label>
-      <input type="text" placeholder="email" />
+      <input type="text" v-model="login_data.email" placeholder="email" />
 
       <label for="">Password</label>
-      <input type="text" placeholder="password" />
-      <button class="login__card__login-btn">Acceder</button>
+      <input type="text" v-model="login_data.password" placeholder="password" />
+      <button
+        class="login__card__login-btn"
+        @click="authStore.login(login_data.email, login_data.password)"
+      >
+        Acceder
+      </button>
     </div>
   </div>
 </template>
