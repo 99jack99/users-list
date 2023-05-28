@@ -11,21 +11,6 @@ To test youll have to use this credentials:
 `Password` cityslicka
 
 
-
-
-## Deployment
-
-To deploy this project youll have to clone and then run
-
-```bash
-  npm run i
-```
-
-```bash
-  npm run dev
-```
-
-
 ## Features
 
 - BEM methodology (with SCSS)
