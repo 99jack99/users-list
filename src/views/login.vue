@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
 
 import { useAuthStore } from "../stores/authStore.js";
 const authStore = useAuthStore();
@@ -26,6 +26,9 @@ const login_data = reactive({
         Acceder
       </button>
     </div>
+    <div class="login__error" v-show="authStore.login_msg == true">
+      Las credenciales son incorrectas!
+    </div>
   </div>
 </template>
 
@@ -49,15 +52,12 @@ const login_data = reactive({
 
   &__card {
     background-color: $main-color;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     padding: 20px;
     border-radius: 4px;
-
     font-size: 17px;
     box-shadow: $main-color 0px 0px 0px 2px inset,
       rgb(255, 255, 255) 10px -10px 0px -3px, $font-color 10px -10px;
@@ -90,6 +90,15 @@ const login_data = reactive({
         transform: scale(1.05);
       }
     }
+  }
+
+  &__error {
+    margin: 20px;
+    background-color: rgb(243, 142, 142);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: $font-color;
+    font-size: 18px;
   }
 }
 </style>

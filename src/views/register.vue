@@ -1,15 +1,40 @@
-<script setup></script>
+<script setup>
+import { reactive } from "vue";
+
+import { useAuthStore } from "../stores/authStore.js";
+const authStore = useAuthStore();
+
+const register_data = reactive({
+  email: "eve.holt@reqres.in",
+  password: "cityslicka",
+});
+</script>
 
 <template>
   <div class="register">
     <h1>Todavia no estas con nosotros? Crea gratis una cuenta</h1>
     <div class="register__card">
       <label for="">User</label>
-      <input type="text" placeholder="email" />
+      <input type="text" v-model="register_data.email" placeholder="email" />
 
       <label for="">Password</label>
-      <input type="text" placeholder="password" />
-      <button class="register__card__register-btn">Crear</button>
+      <input
+        type="text"
+        v-model="register_data.password"
+        placeholder="password"
+      />
+      <button
+        class="register__card__register-btn"
+        @click="authStore.register(register_data.email, register_data.password)"
+      >
+        Crear
+      </button>
+    </div>
+    <div class="register__success" v-show="authStore.register_msg">
+      Tu cuenta se ha creado correctamente
+    </div>
+    <div class="register__error" v-show="authStore.register_msg == false">
+      Ha habido un problema! Intentelo de nuevo
     </div>
   </div>
 </template>
@@ -73,6 +98,24 @@
         transform: scale(1.05);
       }
     }
+  }
+
+  &__success {
+    margin: 20px;
+    background-color: lightgreen;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: $font-color;
+    font-size: 18px;
+  }
+
+  &__error {
+    margin: 20px;
+    background-color: rgb(243, 142, 142);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: $font-color;
+    font-size: 18px;
   }
 }
 </style>

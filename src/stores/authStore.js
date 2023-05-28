@@ -10,6 +10,8 @@ export const useAuthStore = defineStore({
   state: () => {
     return {
       token: null,
+      register_msg: null,
+      login_msg: null
     };
   },
 
@@ -24,14 +26,47 @@ export const useAuthStore = defineStore({
           password: pwd,
         })
         .then((res) => {
+          this.login_msg = false;
           console.log(res);
           this.token = res.data.token;
           router.push("/users")
         })
 
-        .catch((error) =>{
-            console.log("Credenciales incorrectas", error.message);
+        .catch((res) =>{
+            console.log(res);
+            this.login_msg = true;
         })
     },
+
+    register(email, pwd) {
+
+      axios
+        .post("https://reqres.in/api/register", {
+          email: email,
+          password: pwd,
+        })
+        .then((res) => {
+          console.log(res);
+          this.register_msg = true;
+          setTimeout(() => {
+            router.push('/')
+            this.register_msg = null;
+          }, 2000);
+
+        })
+
+        .catch((res) =>{
+            console.log(res);
+            this.register_msg = false;
+        })
+    },
+
+    signout(){
+
+      /* api call */
+
+      this.token = null;
+      router.push('/')
+    }
   },
 });

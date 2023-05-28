@@ -10,6 +10,7 @@ const authStore = useAuthStore();
   </div>
   <div v-else class="header">
     <p class="header__welcome">Hola! Bienvenido</p>
+    <p class="header__welcome" @click="authStore.signout()">Salir</p>
   </div>
 </template>
 
@@ -28,6 +29,17 @@ const authStore = useAuthStore();
     font-size: 20px;
     color: $secondary-color;
     margin-right: 20px;
+
+    &:last-child {
+      color: $font-color;
+      border: 2px solid $font-color;
+      padding: 5px;
+      border-radius: 5px;
+      &:hover {
+        background-color: $font-color;
+        color: $secondary-color;
+      }
+    }
   }
 
   &__item {

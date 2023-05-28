@@ -10,5 +10,3 @@ import {} from "module";
     <RouterView />
   </div>
 </template>
-
-<style scoped></style>
