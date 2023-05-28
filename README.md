@@ -1,7 +1,43 @@
-# Vue 3 + Vite
+# User list 
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Front-end challenge which i consume an users api.
 
-## Recommended IDE Setup
+https://reqres.in/
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+To test youll have to use this credentials:
+
+`Email` eve.holt@reqres.in
+
+`Password` cityslicka
+
+
+
+
+## Deployment
+
+To deploy this project youll have to clone and then run
+
+```bash
+  npm run i
+```
+
+```bash
+  npm run dev
+```
+
+
+## Features
+
+- BEM methodology (with SCSS)
+- Modular structure
+- NO libraries (only axios)
+- Some lifecycle hooks (few because of the requisites)
+- Conditional rendering
+- etc..
+## Improvements
+
+- I could add controls for login and register forms... so client has more idea of what is wrong exactly.
+
+- Adding a more robust styling would be very good. 
+
+- In general, the project could be more complex...
