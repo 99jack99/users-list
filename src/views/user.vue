@@ -17,24 +17,24 @@ let get_users = () => {
     });
 };
 
-/* const test = (id) => {
+const delete_user = (id) => {
   axios
-    .get(`https://reqres.in/api/users/${id}`)
+    .delete(`https://reqres.in/api/users/${id}`)
     .then((res) => {
       console.log(res);
-      router.push("/detaileduser");
+      users.value = users.value.filter((x) => x.id !== id);
     })
     .catch((res) => {
       console.log(res);
     });
-}; */
+};
 
 get_users();
 </script>
 
 <template>
   <div class="user">
-    <h1>Listado de usuarios guays</h1>
+    <h1>Listado de usuarios</h1>
 
     <div class="user__list">
       <div class="user__list__card" v-for="user in users" :key="user.id">
@@ -45,12 +45,17 @@ get_users();
           alt="banner"
         />
         <div class="user__list__card__actions">
-          <router-link :to="{ name: 'Detailed', params: { id: user.id } }"
-            >SEE MORE</router-link
+          <router-link
+            class="user__list__card__actions__btn"
+            :to="{ name: 'Detailed', params: { id: user.id } }"
+            >More</router-link
           >
-          <router-link :to="{ name: 'Detailed', params: { id: user.id } }"
-            >DELETE</router-link
+          <button
+            class="user__list__card__actions__btn"
+            @click="delete_user(user.id)"
           >
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -117,9 +122,32 @@ get_users();
         align-items: center;
         justify-content: space-between;
         gap: 20px;
-        text-decoration: none;
 
-        &:first-child {
+        &__btn {
+          text-decoration: none;
+          background-color: $secondary-color;
+          padding: 10px 15px;
+
+          color: $secondary-color;
+          font-size: 16px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 10px;
+
+          &:first-child {
+            color: $font-color;
+          }
+
+          &:last-child {
+            background-color: red;
+            border-style: none;
+          }
+
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
 
