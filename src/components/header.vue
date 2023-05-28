@@ -1,9 +1,15 @@
-<script setup></script>
+<script setup>
+import { useAuthStore } from "../stores/authStore.js";
+const authStore = useAuthStore();
+</script>
 
 <template>
-  <div class="header">
+  <div class="header" v-if="!authStore.token">
     <router-link to="/" class="header__item">Login</router-link>
     <router-link to="/register" class="header__item">Register</router-link>
+  </div>
+  <div v-else class="header">
+    <p class="header__welcome">Hola! Bienvenido</p>
   </div>
 </template>
 
@@ -17,6 +23,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  &__welcome {
+    font-size: 20px;
+    color: $secondary-color;
+    margin-right: 20px;
+  }
 
   &__item {
     margin-inline: 10px 20px;

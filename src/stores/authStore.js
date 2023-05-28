@@ -9,8 +9,7 @@ export const useAuthStore = defineStore({
 
   state: () => {
     return {
-      user: {},
-      isLogged: false,
+      token: null,
     };
   },
 
@@ -26,6 +25,8 @@ export const useAuthStore = defineStore({
         })
         .then((res) => {
           console.log(res);
+          this.token = res.data.token;
+          router.push("/users")
         })
 
         .catch((error) =>{

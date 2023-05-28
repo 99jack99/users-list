@@ -1,7 +1,6 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
-import router from "../router/index.js";
 
 let users = ref(null);
 
@@ -17,7 +16,7 @@ let get_users = () => {
     });
 };
 
-const delete_user = (id) => {
+let delete_user = (id) => {
   axios
     .delete(`https://reqres.in/api/users/${id}`)
     .then((res) => {
@@ -35,7 +34,6 @@ get_users();
 <template>
   <div class="user">
     <h1>Listado de usuarios</h1>
-
     <div class="user__list">
       <div class="user__list__card" v-for="user in users" :key="user.id">
         <p class="user__list__card__name">{{ user.first_name }}</p>

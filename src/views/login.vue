@@ -5,8 +5,8 @@ import { useAuthStore } from "../stores/authStore.js";
 const authStore = useAuthStore();
 
 const login_data = reactive({
-  email: "",
-  password: "",
+  email: "eve.holt@reqres.in",
+  password: "cityslicka",
 });
 </script>
 
