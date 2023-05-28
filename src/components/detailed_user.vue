@@ -1,12 +1,10 @@
 <script setup>
 import axios from "axios";
-
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 const id = route.params.id;
-
 const user_info = ref();
 const loader = ref(false);
 
@@ -15,36 +13,19 @@ const get_user = () => {
   axios
     .get(`https://reqres.in/api/users/${id}`)
     .then((res) => {
-      console.log(res);
       user_info.value = res.data.data;
       loader.value = true;
     })
-    .catch((res) => {
-      console.log(res);
+    .catch((error) => {
+      console.log(error);
+      /* toast to warn error */
       loader.value = true;
     });
 };
 
-/* const get_user = () => {
-  loader.value = false;
-  axios
-    .get(`https://reqres.in/api/users/2`)
-    .then((res) => {
-      console.log(res);
-      user_info.value = res.data.data;
-      loader.value = true;
-    })
-    .catch((res) => {
-      console.log(res);
-      loader.value = true;
-    });
-}; */
-
 onMounted(() => {
   get_user();
 });
-
-/* const id = $router.name; */
 </script>
 
 <template>
@@ -83,7 +64,6 @@ onMounted(() => {
   width: 100%;
   height: 90vh;
   background-color: $secondary-color;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,7 +83,6 @@ onMounted(() => {
     height: 50px;
     width: 50px;
     border-radius: 50%;
-
     display: grid;
     place-items: center;
   }
@@ -112,7 +91,6 @@ onMounted(() => {
     padding: 20px;
     border-radius: 10px;
     background-color: $main-color;
-
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -8,26 +8,29 @@ let get_users = () => {
   axios
     .get("https://reqres.in/api/users")
     .then((res) => {
-      console.log(res.data.data);
       users.value = res.data.data;
     })
-    .catch((res) => {
-      console.log(res);
+    .catch((error) => {
+      console.log(error.message);
+      /* toast to warn error */
     });
 };
 
 let delete_user = (id) => {
   axios
     .delete(`https://reqres.in/api/users/${id}`)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
       users.value = users.value.filter((x) => x.id !== id);
     })
-    .catch((res) => {
-      console.log(res);
+    .catch((error) => {
+      console.log(error.message);
+      /* toast to warn error */
     });
 };
 
+/* we call get user as soon as possible to avoid client to wait for it.
+We make this call oncreate lifecycle hook
+*/
 get_users();
 </script>
 
@@ -66,7 +69,6 @@ get_users();
   background-color: $secondary-color;
   width: 100%;
   height: 90vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +90,6 @@ get_users();
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
       padding: 20px;
       border-radius: 10px;
       margin: 20px;
@@ -125,10 +126,8 @@ get_users();
           text-decoration: none;
           background-color: $secondary-color;
           padding: 10px 15px;
-
           color: $secondary-color;
           font-size: 16px;
-
           display: flex;
           align-items: center;
           justify-content: center;

@@ -1,12 +1,11 @@
 <script setup>
 import { reactive } from "vue";
-
 import { useAuthStore } from "../stores/authStore.js";
-const authStore = useAuthStore();
 
+const authStore = useAuthStore();
 const login_data = reactive({
-  email: "eve.holt@reqres.in",
-  password: "cityslicka",
+  email: "",
+  password: "",
 });
 </script>
 
@@ -36,17 +35,16 @@ const login_data = reactive({
 @import "../assets/styles/index.scss";
 
 .login {
-  background-color: $secondary-color;
+  background-color: $font-color;
   height: 90vh;
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   h1 {
-    color: $font-color;
+    color: $secondary-color;
     font-size: 3em;
   }
 
@@ -63,7 +61,7 @@ const login_data = reactive({
       rgb(255, 255, 255) 10px -10px 0px -3px, $font-color 10px -10px;
 
     & > label {
-      color: $secondary-color;
+      color: $font-color;
       width: 100%;
       padding-block: 10px;
       font-weight: bold;
@@ -81,8 +79,8 @@ const login_data = reactive({
       margin-top: 20px;
       padding: 10px 20px;
       border: none;
-      background-color: $secondary-color;
-      color: $font-color;
+      background-color: $font-color;
+      color: $secondary-color;
       border-radius: 5px;
       font-weight: bold;
       &:hover {

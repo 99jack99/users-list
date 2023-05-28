@@ -20,7 +20,6 @@ const authStore = useAuthStore();
   background-color: $main-color;
   height: 10vh;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -44,13 +43,11 @@ const authStore = useAuthStore();
 
   &__item {
     margin-inline: 10px 20px;
-
     border: 2px solid $secondary-color;
     padding: 7px 14px;
     border-radius: 4px;
     color: $secondary-color;
     text-decoration: none;
-
     font-size: 17px;
     font-weight: bold;
 

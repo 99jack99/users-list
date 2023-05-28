@@ -1,12 +1,11 @@
 <script setup>
 import { reactive } from "vue";
-
 import { useAuthStore } from "../stores/authStore.js";
-const authStore = useAuthStore();
 
+const authStore = useAuthStore();
 const register_data = reactive({
-  email: "eve.holt@reqres.in",
-  password: "cityslicka",
+  email: "",
+  password: "",
 });
 </script>
 
@@ -16,7 +15,6 @@ const register_data = reactive({
     <div class="register__card">
       <label for="">User</label>
       <input type="text" v-model="register_data.email" placeholder="email" />
-
       <label for="">Password</label>
       <input
         type="text"
@@ -57,15 +55,12 @@ const register_data = reactive({
 
   &__card {
     background-color: $main-color;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     padding: 20px;
     border-radius: 4px;
-
     font-size: 17px;
     box-shadow: $main-color 0px 0px 0px 2px inset,
       rgb(255, 255, 255) 10px -10px 0px -3px, $font-color 10px -10px;
