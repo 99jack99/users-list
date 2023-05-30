@@ -17,7 +17,11 @@ const login_data = reactive({
       <input type="text" v-model="login_data.email" placeholder="email" />
 
       <label for="">Password</label>
-      <input type="text" v-model="login_data.password" placeholder="password" />
+      <input
+        type="password"
+        v-model="login_data.password"
+        placeholder="password"
+      />
       <button
         class="login__card__login-btn"
         @click="authStore.login(login_data.email, login_data.password)"
