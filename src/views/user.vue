@@ -1,10 +1,11 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import user_services from "../services/user_services";
 
 let users = ref(null);
 
-let get_users = () => {
+/* let get_users = () => {
   axios
     .get("https://reqres.in/api/users")
     .then((res) => {
@@ -12,9 +13,8 @@ let get_users = () => {
     })
     .catch((error) => {
       console.log(error.message);
-      /* toast to warn error */
     });
-};
+}; */
 
 let delete_user = (id) => {
   axios
@@ -31,6 +31,17 @@ let delete_user = (id) => {
 /* we call get user as soon as possible to avoid client to wait for it.
 We make this call oncreate lifecycle hook
 */
+
+const get_users = async () => {
+  try {
+    let response = await user_services.getuser();
+    users.value = response.data.data;
+    console.log(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 get_users();
 </script>
 
