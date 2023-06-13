@@ -1,42 +1,23 @@
 <script setup>
-import axios from "axios";
 import { ref } from "vue";
-import user_services from "../services/user_services";
+import user from "../services/User_service";
 
 let users = ref(null);
 
-/* let get_users = () => {
-  axios
-    .get("https://reqres.in/api/users")
-    .then((res) => {
-      users.value = res.data.data;
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-}; */
-
-let delete_user = (id) => {
-  axios
-    .delete(`https://reqres.in/api/users/${id}`)
-    .then(() => {
-      users.value = users.value.filter((x) => x.id !== id);
-    })
-    .catch((error) => {
-      console.log(error.message);
-      /* toast to warn error */
-    });
+const delete_user = async (id) => {
+  try {
+    let response = await user.delete_user(id);
+    // Normally Api should return you, what the current users are... but now we mocked it
+    users.value = users.value.filter((x) => x.id !== id);
+  } catch (error) {
+    console.log(error.message);
+  }
 };
-
-/* we call get user as soon as possible to avoid client to wait for it.
-We make this call oncreate lifecycle hook
-*/
 
 const get_users = async () => {
   try {
-    let response = await user_services.getuser();
+    let response = await user.get_users();
     users.value = response.data.data;
-    console.log(response);
   } catch (error) {
     console.log(error.message);
   }

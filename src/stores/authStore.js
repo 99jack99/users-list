@@ -1,6 +1,7 @@
 // /store/user.js
 import { defineStore } from "pinia";
-import axios from "axios";
+
+import auth from "../services/Auth_service";
 import router from "../router/index.js";
 
 export const useAuthStore = defineStore({
@@ -18,44 +19,38 @@ export const useAuthStore = defineStore({
   },
 
   actions: {
-    login(email, pwd) {
-      axios
-        .post("https://reqres.in/api/login", {
-          email: email,
-          password: pwd,
-        })
-        .then((res) => {
-          this.login_msg = false;
-          this.token = res.data.token;
-          router.push("/users")
-        })
-        .catch((error) =>{
-            console.log(error.message);
-            this.login_msg = true;
-        })
+    async login(email, pwd){
+      try {
+        let response = await auth.login(email, pwd);
+        this.login_msg = false;
+        this.token = response.data.token;
+        router.push("/users")
+      } 
+      catch (error) {
+        console.log(error.message);
+        this.login_msg = true;
+      }
     },
 
-    register(email, pwd) {
-      axios
-        .post("https://reqres.in/api/register", {
-          email: email,
-          password: pwd,
-        })
-        .then(() => {
-          this.register_msg = true;
+    async register(email, pwd){
+      try {
+        let response = await auth.register(email, pwd);
+        this.register_msg = true;
           setTimeout(() => {
-            router.push('/')
+            this.token = response.data.token;
+            router.push('/users')
             this.register_msg = null;
           }, 2000);
-        })
-        .catch((error) =>{
-            console.log(error);
+      } 
+      catch (error) {
+        console.log(error);
             this.register_msg = false;
-        })
+      }
     },
 
+
     signout(){
-      /* api call logout */
+      /* Mocking logout */
       this.token = null;
       router.push('/');
     }

@@ -4,8 +4,8 @@ import { useAuthStore } from "../stores/authStore.js";
 
 const authStore = useAuthStore();
 const register_data = reactive({
-  email: "",
-  password: "",
+  email: "eve.holt@reqres.in",
+  password: "pistol",
 });
 </script>
 
@@ -17,7 +17,7 @@ const register_data = reactive({
       <input type="text" v-model="register_data.email" placeholder="email" />
       <label for="">Password</label>
       <input
-        type="text"
+        type="password"
         v-model="register_data.password"
         placeholder="password"
       />
