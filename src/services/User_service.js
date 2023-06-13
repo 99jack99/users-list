@@ -5,7 +5,11 @@ export default{
     return Api().get('/users')
   },
 
+  get_user(id){
+    return Api().get(`/users/${id}`)
+  },
+
   delete_user(id){
     return Api().delete(`/users/${id}`)
-  }
+  },
 }

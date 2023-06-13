@@ -1,26 +1,23 @@
 <script setup>
-import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+
+import user from "../services/User_service";
 
 const route = useRoute();
 const id = route.params.id;
 const user_info = ref();
 const loader = ref(false);
 
-const get_user = () => {
-  loader.value = false;
-  axios
-    .get(`https://reqres.in/api/users/${id}`)
-    .then((res) => {
-      user_info.value = res.data.data;
-      loader.value = true;
-    })
-    .catch((error) => {
-      console.log(error);
-      /* toast to warn error */
-      loader.value = true;
-    });
+const get_user = async () => {
+  try {
+    let response = await user.get_user(id);
+    user_info.value = response.data.data;
+    loader.value = true;
+  } catch (error) {
+    console.log(error.message);
+    loader.value = true;
+  }
 };
 
 onMounted(() => {
