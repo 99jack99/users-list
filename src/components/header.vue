@@ -5,8 +5,15 @@ const authStore = useAuthStore();
 
 <template>
   <div class="header" v-if="!authStore.token">
-    <router-link to="/" class="header__item">Login</router-link>
-    <router-link to="/register" class="header__item">Register</router-link>
+    <div class="header__left">
+      <img class="header__left__logo" src="../assets/imgs/u.png" alt="" />
+    </div>
+    <div class="header__right">
+      <router-link to="/" class="header____right__item">Login</router-link>
+      <router-link to="/register" class="header__right__item"
+        >Register</router-link
+      >
+    </div>
   </div>
   <div v-else class="header">
     <p class="header__welcome">Hola! Bienvenido</p>
@@ -17,12 +24,12 @@ const authStore = useAuthStore();
 <style lang="scss" scoped>
 @import "../assets/styles/index.scss";
 .header {
-  background-color: $main-color;
+  background-color: $clr-main-white;
   height: 10vh;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   &__welcome {
     font-size: 20px;
@@ -41,23 +48,36 @@ const authStore = useAuthStore();
     }
   }
 
-  &__item {
-    margin-inline: 10px 20px;
-    border: 2px solid $secondary-color;
-    padding: 7px 14px;
-    border-radius: 4px;
-    color: $secondary-color;
-    text-decoration: none;
-    font-size: 17px;
-    font-weight: bold;
+  &__left {
+    margin-left: 20px;
 
-    &:last-child {
-      background-color: $secondary-color;
-      color: $main-color;
+    &__logo {
+      height: 100px;
+      width: 100px;
     }
+  }
 
-    &:hover {
-      transform: scale(1.05);
+  &__right {
+    margin-right: 20px;
+
+    &__item {
+      margin-inline: 20px;
+      border: 2px solid $secondary-color;
+      padding: 7px 14px;
+      border-radius: 4px;
+      color: $secondary-color;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: bold;
+
+      &:last-child {
+        background-color: $secondary-color;
+        color: $main-color;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 }
